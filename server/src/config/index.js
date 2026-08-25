@@ -6,6 +6,8 @@ const {
     PORT,
     NODE_ENV,
     MONGO_URI,
+    SERVICE,
+    LOG_DIRECTORY,
 } = process.env;
 
 
@@ -58,6 +60,8 @@ const config = Object.freeze({
     port: toNumber(PORT, 6000),
     nodeEnv: resolvedNodeEnvs,
     mongoUri: MONGO_URI,
+    service: SERVICE,
+    logDirectory: LOG_DIRECTORY,
 })
 
 export {
