@@ -1,4 +1,8 @@
 
+/**
+ * Field-path patterns redacted from log output (see logger/pino.logger.js's
+ * `redact` config). Supports pino's dot-path and `*.field` wildcard syntax.
+ */
 const SENSITIVE_FIELDS = Object.freeze([
     // --- Authentication & Credentials ---
     "password",

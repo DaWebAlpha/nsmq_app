@@ -13,6 +13,15 @@ if(!fs.existsSync(logDirectory)){
     fs.mkdirSync(logDirectory, {recursive: true});
 }
 
+/**
+ * Builds one pino-roll file transport target (daily/size-rolled, JSON files).
+ * @param {string} fileLocation Path (relative to the log directory) and base filename for the rolled files.
+ * @param {string} frequency Roll frequency, e.g. "daily".
+ * @param {string} fileSize Max size per file before rolling, e.g. "20m".
+ * @param {string} [minLevel=logLevel] Minimum pino level written to this target.
+ * @param {number} retentionCount Number of rolled files to retain before deletion.
+ * @returns {object} A pino.transport target config.
+ */
 const buildTargetTransport = (
     fileLocation,
     frequency,
@@ -99,6 +108,7 @@ const auditTransport = pino.transport({
 })
 
 
+/** Shared pino options (level, timestamp, service/env base fields, redaction, level_label mixin) used by every logger instance. */
 const getBaseConfig = () => ({
     level: logLevel,
     timestamp: pino.stdTimeFunctions.isoTime,
@@ -127,21 +137,25 @@ const getBaseConfig = () => ({
     }
 })
 
+/** General app/system events (startup, shutdown, DB connection, uncaught errors). */
 export const systemLogger = pino(
     getBaseConfig(),
     systemTransport,
-) 
+)
 
+/** Security/compliance-relevant events (auth, admin actions, data changes). */
 export const auditLogger = pino(
     getBaseConfig(),
     auditTransport,
 )
 
+/** Per-request HTTP access logs. */
 export const accessLogger = pino(
     getBaseConfig(),
     accessTarget,
 )
 
+/** Convenience bundle of all three logger instances. */
 export const loggers = {
     systemLogger,
     auditLogger,
