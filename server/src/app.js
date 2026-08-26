@@ -8,6 +8,11 @@ import { fileURLToPath } from "node:url";
 
 
 
+/**
+ * The configured Express app — body parsing, EJS view engine, static
+ * file serving, access logging, and the terminal notFound/errorHandler
+ * middleware stack. Routes get mounted above `notFound` as they're added.
+ */
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);

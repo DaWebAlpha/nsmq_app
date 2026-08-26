@@ -24,6 +24,13 @@ for(const [key, value] of Object.entries(requiredEnvs)){
         throw new Error(`Missing .env value: ${key}`);
     }
 }
+/**
+ * Parses an env var into a valid port number, falling back when it's
+ * missing, blank, non-numeric, or outside the valid port range.
+ * @param {string|undefined} value Raw env var value.
+ * @param {number} fallback Value to use when `value` isn't a valid port.
+ * @returns {number}
+ */
 const toNumber = (value, fallback) => {
     if(
         !value ||
@@ -56,6 +63,7 @@ if(
     resolvedNodeEnvs = NODE_ENV.trim();
 }
 
+/** Validated, frozen app configuration — read env vars only through this, never `process.env` directly. */
 const config = Object.freeze({
     port: toNumber(PORT, 6000),
     nodeEnv: resolvedNodeEnvs,
