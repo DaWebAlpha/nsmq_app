@@ -178,6 +178,9 @@
   }
 }
 @layer utilities {
+  .fixed {
+    position: fixed;
+  }
   .static {
     position: static;
   }
@@ -186,6 +189,9 @@
   }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
+  }
+  .block {
+    display: block;
   }
   .grid {
     display: grid;
@@ -249,6 +255,9 @@
   }
   .text-indigo-600 {
     color: var(--color-indigo-600);
+  }
+  .lowercase {
+    text-transform: lowercase;
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
