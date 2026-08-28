@@ -108,7 +108,10 @@ const auditTransport = pino.transport({
 })
 
 
-/** Shared pino options (level, timestamp, service/env base fields, redaction, level_label mixin) used by every logger instance. */
+/**
+ * Shared pino options (level, timestamp, service/env base fields,
+ * redaction, level_label mixin) used by every logger instance.
+ */
 const getBaseConfig = () => ({
     level: logLevel,
     timestamp: pino.stdTimeFunctions.isoTime,
@@ -137,25 +140,35 @@ const getBaseConfig = () => ({
     }
 })
 
-/** General app/system events (startup, shutdown, DB connection, uncaught errors). */
+/**
+ * General app/system events (startup, shutdown, DB connection,
+ * uncaught errors).
+ */
 export const systemLogger = pino(
     getBaseConfig(),
     systemTransport,
 )
 
-/** Security/compliance-relevant events (auth, admin actions, data changes). */
+/**
+ * Security/compliance-relevant events (auth, admin actions, data
+ * changes).
+ */
 export const auditLogger = pino(
     getBaseConfig(),
     auditTransport,
 )
 
-/** Per-request HTTP access logs. */
+/**
+ * Per-request HTTP access logs.
+ */
 export const accessLogger = pino(
     getBaseConfig(),
     accessTarget,
 )
 
-/** Convenience bundle of all three logger instances. */
+/**
+ * Convenience bundle of all three logger instances.
+ */
 export const loggers = {
     systemLogger,
     auditLogger,

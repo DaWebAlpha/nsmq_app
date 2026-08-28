@@ -4,6 +4,12 @@ import { connectDatabase} from "./config/database.js";
 import { systemLogger } from "./logger/pino.logger.js";
 import { gracefulShutdown } from "./utils/index.js";
 
+/**
+ * Boots the app: connects to the database, starts listening on
+ * `config.port`, and wires up graceful shutdown. Exits the process with
+ * code 1 if either the database connection or the initial listen fails.
+ * @returns {Promise<void>}
+ */
 const startServer = async() => {
     try{
         await connectDatabase();

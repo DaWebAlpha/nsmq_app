@@ -123,12 +123,19 @@ userSchema.index({restoredBy: 1});
 userSchema.index({deletedAt: 1});
 userSchema.index({createdBy: 1});
 
-/** Computed display name — not stored, derived from firstName/lastName on every read. */
+/**
+ * Computed display name — not stored, derived from firstName/lastName
+ * on every read.
+ */
 userSchema.virtual("fullName").get(function(){
     return toTitleCase(this.firstName) + " " + toTitleCase(this.lastName);
 })
 
-/** Hashes the password with Argon2id before save — only runs when the password field actually changed, so re-saving an unrelated field never re-hashes it. */
+/**
+ * Hashes the password with Argon2id before save — only runs when the
+ * password field actually changed, so re-saving an unrelated field
+ * never re-hashes it.
+ */
 userSchema.pre("save", async function(){
     // GUARD: only re-hash if `password` was actually just set/changed on
     // THIS save. Without this check, every save (even one only touching
@@ -201,7 +208,12 @@ userSchema.methods.comparePassword = async function(plainPassword){
         }
 }
 
-/** Normalizes name/email/phone on every save that touched them — trims/cases text fields and coerces phoneNumber to E.164 (rejecting it with a BadRequestError if it can't be parsed as a valid GH number). */
+/**
+ * Normalizes name/email/phone on every save that touched them —
+ * trims/cases text fields and coerces phoneNumber to E.164 (rejecting
+ * it with a BadRequestError if it can't be parsed as a valid GH
+ * number).
+ */
 userSchema.pre("save", function(){
     // Each block below is independent — it only runs if THAT specific
     // field was modified on this save, so editing just `firstName` never
@@ -244,7 +256,9 @@ userSchema.pre("save", function(){
         }
 })
 
-/** The User Mongoose Model — collection `users`. */
+/**
+ * The User Mongoose Model — collection `users`.
+ */
 const User = mongoose.model("User", userSchema);
 
 export {

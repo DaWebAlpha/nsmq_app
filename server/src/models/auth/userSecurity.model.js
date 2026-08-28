@@ -91,17 +91,26 @@ const userSecuritySchemaDefinition = {
 const userSecuritySchema = createSchema(userSecuritySchemaDefinition);
 
 
-/** @returns {boolean} True while `lockedUntil` is set and still in the future. */
+/**
+ * @returns {boolean} True while `lockedUntil` is set and still in the
+ * future.
+ */
 userSecuritySchema.methods.isLocked = function () {
     return Boolean(this.lockedUntil) && this.lockedUntil.getTime() > Date.now();
 };
 
-/** @returns {boolean} True while `suspendedUntil` is set and still in the future. */
+/**
+ * @returns {boolean} True while `suspendedUntil` is set and still in
+ * the future.
+ */
 userSecuritySchema.methods.isSuspended = function () {
     return Boolean(this.suspendedUntil) && this.suspendedUntil.getTime() > Date.now();
 };
 
-/** Increments the failed-attempt counter and locks the account once it reaches SECURITY_CONFIG.MAX_FAILED_LOGIN_ATTEMPTS. */
+/**
+ * Increments the failed-attempt counter and locks the account once it
+ * reaches SECURITY_CONFIG.MAX_FAILED_LOGIN_ATTEMPTS.
+ */
 userSecuritySchema.methods.registerFailedAttempt = function({session = null} = {}){
     // Bump the counter and timestamp every time this is called.
     this.failedLoginAttempts = (this.failedLoginAttempts || 0) + 1;
@@ -120,7 +129,9 @@ userSecuritySchema.methods.registerFailedAttempt = function({session = null} = {
 }
 
 
-/** Resets failed-attempt count and lockout, records the login time/IP. */
+/**
+ * Resets failed-attempt count and lockout, records the login time/IP.
+ */
 userSecuritySchema.methods.registerSuccessfulLogin = function({ipAddress = null, session = null} = {}){
     this.failedLoginAttempts = 0;
     this.lastLoginAt = new Date();
@@ -208,7 +219,9 @@ userSecuritySchema.statics.findOrCreateForUser = async function (userId, { sessi
     return created;
 };
 
-/** The UserSecurity Mongoose Model — collection `usersecurities`. */
+/**
+ * The UserSecurity Mongoose Model — collection `usersecurities`.
+ */
 const UserSecurity = mongoose.model("UserSecurity", userSecuritySchema);
 
 export { UserSecurity };

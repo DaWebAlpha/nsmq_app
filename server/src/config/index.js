@@ -39,6 +39,15 @@ for(const [key, value] of Object.entries(requiredEnvs)){
         throw new Error(`Missing .env value: ${key}`);
     }
 }
+/**
+ * Parses an env-var string into a valid port number (1-65535), falling
+ * back to `fallback` if the value is missing, blank, non-numeric, or out
+ * of range — so a malformed .env value degrades to a sane default instead
+ * of crashing the app.
+ * @param {string|undefined} value - The raw env-var string.
+ * @param {number} fallback - Used when value is missing/blank/invalid.
+ * @returns {number}
+ */
 const toNumber = (value, fallback) => {
     if(
         !value ||
@@ -72,6 +81,14 @@ if(
 }
 
 
+/**
+ * The app's fully-resolved, validated runtime configuration — read once
+ * from `process.env` at import time and frozen, so nothing downstream can
+ * accidentally mutate a shared config value. `port`/`jwtAccessExpirySeconds`/
+ * etc. are pre-coerced to numbers via `toNumber`; `nodeEnv` is guaranteed
+ * to be one of `allowedNodeEnvs`.
+ * @type {Readonly<object>}
+ */
 const config = Object.freeze({
     port: toNumber(PORT, 6000),
     nodeEnv: resolvedNodeEnvs,

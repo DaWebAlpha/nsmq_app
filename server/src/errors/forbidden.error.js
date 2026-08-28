@@ -1,7 +1,9 @@
 import { AppError } from "./app.error.js";
 import { HTTP_STATUS } from "../constants/index.js";
 
-/** 403 Forbidden — the client is authenticated but lacks permission. */
+/**
+ * 403 Forbidden — the client is authenticated but lacks permission.
+ */
 class ForbiddenError extends AppError{
     /**
      * @param {object} [options]

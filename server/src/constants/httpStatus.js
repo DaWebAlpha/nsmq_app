@@ -1,4 +1,7 @@
-/** Frozen map of HTTP status codes used across the app's error classes and responses. */
+/**
+ * Frozen map of HTTP status codes used across the app's error classes
+ * and responses.
+ */
 const HTTP_STATUS = Object.freeze({
     CONTINUE: 100,
     OK: 200,

@@ -15,7 +15,10 @@ import {
 const window = new JSDOM("").window;
 const DOMPurify = createDOMPurify(window);
 
-/** Leaf field names that must never be run through HTML sanitization — hashed/opaque values that sanitizing or trimming would corrupt. */
+/**
+ * Leaf field names that must never be run through HTML sanitization —
+ * hashed/opaque values that sanitizing or trimming would corrupt.
+ */
 const SANITIZE_EXCLUDED_PATHS = new Set([
     "password",
     "passwordHash",

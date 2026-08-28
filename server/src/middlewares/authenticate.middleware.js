@@ -42,6 +42,14 @@ const resolveAuthenticatedUser = async (token) => {
 // caller share the one real rotation instead of racing it and losing.
 const inFlightRefreshes = new Map();
 
+/**
+ * Rotates one refresh token into a fresh access+refresh pair, de-duping
+ * concurrent callers sharing the same raw token value (see the comment
+ * above `inFlightRefreshes`) so only one real rotation happens per token.
+ * @param {import("express").Request} request
+ * @param {string} refreshToken - The raw refresh token cookie value.
+ * @returns {Promise<{accessToken: string, refreshToken: string}>}
+ */
 const rotateRefreshToken = (request, refreshToken) => {
     if (inFlightRefreshes.has(refreshToken)) {
         return inFlightRefreshes.get(refreshToken);

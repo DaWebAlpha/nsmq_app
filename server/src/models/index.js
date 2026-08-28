@@ -1,4 +1,6 @@
-/** Barrel file — re-exports every Mongoose model from one place. */
+/**
+ * Barrel file — re-exports every Mongoose model from one place.
+ */
 export { User } from "./auth/user.model.js";
 export { UserSecurity } from "./auth/userSecurity.model.js";
 export { RefreshToken } from "./auth/refreshToken.model.js";

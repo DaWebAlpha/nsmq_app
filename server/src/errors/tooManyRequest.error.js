@@ -1,7 +1,9 @@
 import { AppError } from "./app.error.js";
 import { HTTP_STATUS } from "../constants/index.js";
 
-/** 429 Too Many Requests — the client has hit a rate limit. */
+/**
+ * 429 Too Many Requests — the client has hit a rate limit.
+ */
 class TooManyRequestError extends AppError{
     /**
      * @param {object} [options]

@@ -1,4 +1,8 @@
-/** Copies only the keys in `allowedFields` (that are actually present on `source`) into a new object — a generic allowlist filter with no domain knowledge of any one model's fields. */
+/**
+ * Copies only the keys in `allowedFields` (that are actually present on
+ * `source`) into a new object — a generic allowlist filter with no
+ * domain knowledge of any one model's fields.
+ */
 const pickAllowedFields = (source = {}, allowedFields = []) => {
     const result = {};
 

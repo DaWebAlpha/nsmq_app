@@ -1,4 +1,6 @@
-/** Barrel file — re-exports every auth controller from one place. */
+/**
+ * Barrel file — re-exports every auth controller from one place.
+ */
 export { registerUserController } from "./register.controller.js";
 export { loginController } from "./login.controller.js";
 export { logoutController } from "./logout.controller.js";

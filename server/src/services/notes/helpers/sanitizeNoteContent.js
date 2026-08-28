@@ -3,7 +3,10 @@ import { BadRequestError } from "../../../errors/index.js";
 
 const MAX_NOTE_CONTENT_LENGTH = 100000;
 
-/** Sanitizes rich-text note content, allowing the formatting tags/attributes the notes editor produces. */
+/**
+ * Sanitizes rich-text note content, allowing the formatting
+ * tags/attributes the notes editor produces.
+ */
 const sanitizeNoteContent = (value = "") => {
     const rawContent = String(value ?? "").trim();
 

@@ -1,7 +1,9 @@
 import { AppError } from "./app.error.js";
 import { HTTP_STATUS } from "../constants/index.js";
 
-/** 401 Unauthenticated — no valid credentials were supplied. */
+/**
+ * 401 Unauthenticated — no valid credentials were supplied.
+ */
 class UnauthenticatedError extends AppError{
     /**
      * @param {object} [options]

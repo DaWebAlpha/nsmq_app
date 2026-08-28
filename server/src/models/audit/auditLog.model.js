@@ -37,7 +37,11 @@ const auditLogSchema = new mongoose.Schema(
             ref: "User",
             default: null
         },
-        /** True when `performedBy` is null because the system, not a user, did this (e.g. a scheduled cleanup job) — makes that intent explicit instead of implied by a null check. */
+        /**
+         * True when `performedBy` is null because the system, not a
+         * user, did this (e.g. a scheduled cleanup job) — makes that
+         * intent explicit instead of implied by a null check.
+         */
         isSystemAction: {
             type: Boolean,
             default: false
@@ -54,13 +58,20 @@ const auditLogSchema = new mongoose.Schema(
             type: String,
             default: null,
         },
-        /** Whether the action actually went through — lets denied/failed attempts (e.g. a permission check that blocked a delete) be logged too, not just completed ones. */
+        /**
+         * Whether the action actually went through — lets
+         * denied/failed attempts (e.g. a permission check that
+         * blocked a delete) be logged too, not just completed ones.
+         */
         status: {
             type: String,
             enum: ["success", "failure"],
             default: "success",
         },
-        /** Lets security-relevant entries (e.g. a role escalation) be filtered/alerted on separately from routine ones. */
+        /**
+         * Lets security-relevant entries (e.g. a role escalation) be
+         * filtered/alerted on separately from routine ones.
+         */
         severity: {
             type: String,
             enum: ["info", "warning", "critical"],
@@ -82,7 +93,11 @@ const auditLogSchema = new mongoose.Schema(
             type: String,
             default: null,
         },
-        /** pino-http's auto-generated `request.id` (see app.js) — correlates this entry to the exact HTTP request and its matching accessLogger/auditLogger file log lines. */
+        /**
+         * pino-http's auto-generated `request.id` (see app.js) —
+         * correlates this entry to the exact HTTP request and its
+         * matching accessLogger/auditLogger file log lines.
+         */
         requestId: {
             type: String,
             default: null,
@@ -107,7 +122,9 @@ auditLogSchema.index({ status: 1, createdAt: -1 });
 auditLogSchema.index({ severity: 1, createdAt: -1 });
 
 
-/** The AuditLog Mongoose Model — collection `auditlogs`. */
+/**
+ * The AuditLog Mongoose Model — collection `auditlogs`.
+ */
 const AuditLog = mongoose.model("AuditLog", auditLogSchema);
 
 export {

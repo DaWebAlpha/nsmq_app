@@ -1,4 +1,6 @@
-/** Barrel export for all typed operational error classes. */
+/**
+ * Barrel export for all typed operational error classes.
+ */
 export { AppError } from "./app.error.js";
 export { BadRequestError } from "./badRequest.error.js";
 export { UnauthenticatedError } from "./unauthenticated.error.js";

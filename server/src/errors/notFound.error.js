@@ -1,7 +1,9 @@
 import { AppError } from "./app.error.js";
 import { HTTP_STATUS } from "../constants/index.js";
 
-/** 404 Not Found — the requested resource does not exist. */
+/**
+ * 404 Not Found — the requested resource does not exist.
+ */
 class NotFoundError extends AppError{
     /**
      * @param {object} [options]

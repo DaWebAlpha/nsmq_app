@@ -85,7 +85,10 @@ const noteSchemaDefinition = {
 
 const notesSchema = createSchema(noteSchemaDefinition);
 
-/** Combined full-text search index over topic/subTopic/content, weighted so a topic-name match ranks above a content match. */
+/**
+ * Combined full-text search index over topic/subTopic/content,
+ * weighted so a topic-name match ranks above a content match.
+ */
 notesSchema.index(
     {
         topic: "text",
@@ -106,7 +109,9 @@ notesSchema.index({ isDeleted: 1, subject: 1, topicNumber: 1, topic: 1, subTopic
 notesSchema.index({ isDeleted: 1, subject: 1, topic: 1, subTopic: 1 });
 notesSchema.index({ isDeleted: 1, subTopic: 1, isPremium: 1 });
 
-/** The Note Mongoose Model — collection `notes`. */
+/**
+ * The Note Mongoose Model — collection `notes`.
+ */
 const Note = mongoose.model("Note", notesSchema);
 
 export { Note };

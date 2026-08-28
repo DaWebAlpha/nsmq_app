@@ -17,7 +17,10 @@ import {
     findCanonicalSubTopic,
 } from "./helpers/index.js";
 
-/** Every editable Note field except `userId` — ownership doesn't change through an edit. */
+/**
+ * Every editable Note field except `userId` — ownership doesn't
+ * change through an edit.
+ */
 const UPDATE_ALLOWED_FIELDS = NOTE_ALLOWED_FIELDS.filter((field) => field !== "userId");
 
 /**

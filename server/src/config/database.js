@@ -19,14 +19,28 @@ const connectDatabase = async () => {
     }
 }
 
+/**
+ * Fires once the initial connection succeeds, and again after any
+ * automatic reconnect.
+ */
 mongoose.connection.on("connected", () => {
     systemLogger.info("Database has been connected");
 })
 
+/**
+ * Fires when an established connection is lost (network drop, MongoDB
+ * restart, etc.) — mongoose retries automatically, this is just
+ * visibility into that state change.
+ */
 mongoose.connection.on("disconnected", () => {
     systemLogger.warn("Database has been disconnected");
 })
 
+/**
+ * Fires on any connection-level error AFTER the initial connect
+ * succeeded (the initial-connect failure path is handled separately,
+ * inside connectDatabase's own try/catch).
+ */
 mongoose.connection.on("error", (error) => {
     systemLogger.error({err: error}, "Database connection error")
 })

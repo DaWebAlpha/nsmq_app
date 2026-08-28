@@ -36,7 +36,10 @@ const transformDocument = (_document, returnedObject) => {
 }
 
 
-/** `toJSON`/`toObject` config shared by both: getters/virtuals enabled, `transformDocument` applied. */
+/**
+ * `toJSON`/`toObject` config shared by both: getters/virtuals enabled,
+ * `transformDocument` applied.
+ */
 const serializationOptions = Object.freeze({
     getters: true,
     virtuals: true,
@@ -44,7 +47,10 @@ const serializationOptions = Object.freeze({
 });
 
 
-/** Base schema options every model built via the `createSchema()` factory (not built yet) shares. */
+/**
+ * Base schema options every model built via the `createSchema()`
+ * factory (not built yet) shares.
+ */
 const mongooseSchemaOptions = Object.freeze({
     timestamps: true,
     id: false,

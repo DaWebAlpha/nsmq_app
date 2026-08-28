@@ -1,7 +1,10 @@
 import { AppError } from "./app.error.js";
 import { HTTP_STATUS } from "../constants/index.js";
 
-/** 409 Conflict — the request conflicts with existing state (e.g. duplicate key). */
+/**
+ * 409 Conflict — the request conflicts with existing state (e.g.
+ * duplicate key).
+ */
 class ConflictError extends AppError{
     /**
      * @param {object} [options]

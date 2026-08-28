@@ -1,7 +1,10 @@
 import { AppError } from "./app.error.js";
 import { HTTP_STATUS } from "../constants/index.js";
 
-/** 500 Internal Server Error — an unexpected failure with no more specific category. */
+/**
+ * 500 Internal Server Error — an unexpected failure with no more
+ * specific category.
+ */
 class InternalServerError extends AppError{
     /**
      * @param {object} [options]

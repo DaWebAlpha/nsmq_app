@@ -10,6 +10,14 @@ import { fileURLToPath } from "node:url";
 
 
 
+/**
+ * The configured Express app instance — body/cookie parsing, the EJS view
+ * engine, static files, request logging, every mounted route, and finally
+ * the 404/error-handling middleware, all wired up at module load time.
+ * Doesn't call `.listen()` itself; that's server.js's job, so this module
+ * stays testable without actually binding a port.
+ * @type {import("express").Express}
+ */
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);

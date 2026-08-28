@@ -52,12 +52,17 @@ const loginLogSchema = new mongoose.Schema(loginLogSchemaDefinition,
 // Fast lookup: "all login events for this one user, newest first."
 loginLogSchema.index({ userId: 1, createdAt: -1 });
 
-/** TTL index — MongoDB automatically deletes entries ~180 days after createdAt. */
+/**
+ * TTL index — MongoDB automatically deletes entries ~180 days after
+ * createdAt.
+ */
 // 60 (seconds) * 60 (minutes) * 24 (hours) * 180 (days) = the number of
 // seconds after `createdAt` that MongoDB will delete this document.
 loginLogSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 180 });
 
-/** The LoginLog Mongoose Model — collection `loginlogs`. */
+/**
+ * The LoginLog Mongoose Model — collection `loginlogs`.
+ */
 const LoginLog = mongoose.model("LoginLog", loginLogSchema);
 
 export {

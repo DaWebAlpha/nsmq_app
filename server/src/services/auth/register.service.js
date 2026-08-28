@@ -15,7 +15,11 @@ import {
 
 import { recordAuditLog } from "../audit/index.js";
 
-/** Fields a caller is allowed to set at registration — an explicit allow-list so a stray `role`/`isPremiumAccess` key in `input` can never be mass-assigned onto a new account. */
+/**
+ * Fields a caller is allowed to set at registration — an explicit
+ * allow-list so a stray `role`/`isPremiumAccess` key in `input` can
+ * never be mass-assigned onto a new account.
+ */
 const ALLOWED_FIELDS = [
     "firstName",
     "lastName",

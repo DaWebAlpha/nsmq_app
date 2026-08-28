@@ -2,26 +2,36 @@ import mongoose from "mongoose";
 
 const { ObjectId } = mongoose.Schema.Types;
 
-/** Schema options for a `User` reference field (createdBy/updatedBy/etc.), defaulting to unset. */
+/**
+ * Schema options for a `User` reference field (createdBy/updatedBy/
+ * etc.), defaulting to unset.
+ */
 const fieldOptions = Object.freeze({
     type: ObjectId,
     ref: "User",
     default: null,
 });
 
-/** Schema options for an audit timestamp field, defaulting to unset. */
+/**
+ * Schema options for an audit timestamp field, defaulting to unset.
+ */
 const dateOptions = Object.freeze({
     type: Date,
     default: null
 })
 
-/** Schema options for a free-text audit reason field, defaulting to unset. */
+/**
+ * Schema options for a free-text audit reason field, defaulting to
+ * unset.
+ */
 const reasonOptions = Object.freeze({
     type: String,
     default: null
 })
 
-/** Schema options for an audit flag field, defaulting to false. */
+/**
+ * Schema options for an audit flag field, defaulting to false.
+ */
 const booleanOptions = Object.freeze({
     type: Boolean,
     default: false,

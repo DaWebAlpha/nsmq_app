@@ -59,7 +59,9 @@ const buildNotesFilter = (filter = {}) => {
     return safeFilter;
 };
 
-/** buildNotesFilter, forcing isDeleted: false — active notes only. */
+/**
+ * buildNotesFilter, forcing isDeleted: false — active notes only.
+ */
 const buildActiveNotesFilter = (filter = {}) => {
     return buildNotesFilter({
         ...filter,
@@ -67,7 +69,10 @@ const buildActiveNotesFilter = (filter = {}) => {
     });
 };
 
-/** buildNotesFilter, forcing isDeleted: {$in: [true, false]} — active and deleted notes both. */
+/**
+ * buildNotesFilter, forcing isDeleted: {$in: [true, false]} — active
+ * and deleted notes both.
+ */
 const buildAllNotesFilter = (filter = {}) => {
     return buildNotesFilter({
         ...filter,
@@ -75,7 +80,9 @@ const buildAllNotesFilter = (filter = {}) => {
     });
 };
 
-/** buildNotesFilter, forcing isDeleted: true — deleted notes only. */
+/**
+ * buildNotesFilter, forcing isDeleted: true — deleted notes only.
+ */
 const buildDeletedNotesFilter = (filter = {}) => {
     return buildNotesFilter({
         ...filter,

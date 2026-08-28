@@ -6,17 +6,31 @@ import {
 } from "../errors/index.js";
 
 
-/** Argon2id hashing parameters used by {@link hashPassword}. */
+/**
+ * Argon2id hashing parameters used by {@link hashPassword}.
+ */
 const ARGON_CONFIG = {
-    /** Argon2id — the variant OWASP recommends, hybrid-resistant to both GPU-cracking and side-channel attacks. */
+    /**
+     * Argon2id — the variant OWASP recommends, hybrid-resistant to
+     * both GPU-cracking and side-channel attacks.
+     */
     type: argon2.argon2id,
-    /** Memory cost in KiB (2**16 = 65536 KiB = 64 MiB) — the main lever against GPU/ASIC brute-forcing. */
+    /**
+     * Memory cost in KiB (2**16 = 65536 KiB = 64 MiB) — the main
+     * lever against GPU/ASIC brute-forcing.
+     */
     memoryCost: 2 ** 16,
-    /** Number of hashing iterations. */
+    /**
+     * Number of hashing iterations.
+     */
     timeCost: 3,
-    /** Number of threads used to compute the hash in parallel. */
+    /**
+     * Number of threads used to compute the hash in parallel.
+     */
     parallelism: 2,
-    /** Output hash length in bytes. */
+    /**
+     * Output hash length in bytes.
+     */
     hashLength: 32,
 };
 

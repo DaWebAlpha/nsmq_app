@@ -53,11 +53,16 @@ const failedLoginLogSchema = new mongoose.Schema(failedLoginLogSchemaDefinition,
 // useful for spotting a burst of failures against one specific account.
 failedLoginLogSchema.index({ userId: 1, createdAt: -1 });
 
-/** TTL index — MongoDB automatically deletes entries ~180 days after createdAt. */
+/**
+ * TTL index — MongoDB automatically deletes entries ~180 days after
+ * createdAt.
+ */
 failedLoginLogSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 180 });
 
 
-/** The FailedLoginLog Mongoose Model — collection `failedloginlogs`. */
+/**
+ * The FailedLoginLog Mongoose Model — collection `failedloginlogs`.
+ */
 const FailedLoginLog = mongoose.model("FailedLoginLog", failedLoginLogSchema);
 
 export {
