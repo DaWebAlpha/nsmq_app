@@ -30,8 +30,7 @@ const fetchOrNotFound = async(Model, id, {
     filter = {},
     projection = null
 } = {}) => {
-    // CHECK 1: was an id even given? A missing id is a client mistake in
-    // how the request was built — a 400, not a 404.
+    
     if(!id){
         throw new BadRequestError({
             message: idMessage,
