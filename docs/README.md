@@ -24,7 +24,9 @@ document set doubles as a written record of the architecture.
 |---|----------|--------|
 | 01 | [Environment Configuration Loading](01-config-env-loading.md) | `config/index.js` — loading, validating, and freezing environment variables into a single typed config object |
 | 02 | [Database Connection Layer](02-database-connection.md) | `config/database.js` — connecting to MongoDB via Mongoose, connection-lifecycle logging, fail-fast error propagation |
-| 03 | [Constants & Barrel Exports](03-constants-and-barrel-exports.md) | `constants/mongoose.options.js`, `constants/index.js` — shared constant values and the barrel-export pattern used across the codebase |
+| 03 | [Shared Constants & Barrel Exports](03-constants-and-barrel-exports.md) | The full `constants/` folder — Mongo pool tuning, HTTP status codes, note subjects, user roles, account-lockout thresholds, log-redaction patterns, and the barrel-export pattern tying them together |
+| 04 | [Structured Logging with Pino](04-pino-logger.md) | `logger/pino.logger.js` — three purpose-scoped loggers, daily-rotated file transports, redaction, and dev-only pretty printing |
+| 05 | [Custom Error Classes](05-custom-error-classes.md) | `errors/` — a typed error hierarchy (`AppError` base + 7 HTTP-status subclasses), the operational-vs-bug distinction, and how status codes get encoded into the type system |
 
 ## Conventions used throughout this app
 
