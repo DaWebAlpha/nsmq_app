@@ -12,6 +12,7 @@ import {
     normalizeEmail,
     normalizeString,
     normalizePhoneNumber,
+    resolveId,
 } from "../../utils/index.js";
 import {
     BadRequestError,
@@ -19,14 +20,6 @@ import {
     ForbiddenError
 } from "../../errors/index.js";
 import { recordAuditLog } from "../audit/index.js";
-
-/**
- * Normalizes a Mongoose document (or a plain `{id}`/`{_id}` object) down to
- * a plain string id, or `null` if neither shape is present.
- * @param {import("mongoose").Document|{id?: string}|{_id?: import("mongoose").Types.ObjectId}|null|undefined} doc
- * @returns {string|null}
- */
-const resolveId = (doc) => doc?._id.toString() ?? doc?.id.toString() ?? null;
 
 /**
  * Authenticates a user by email or phone number + password, running every
