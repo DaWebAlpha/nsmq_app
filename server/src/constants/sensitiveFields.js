@@ -84,7 +84,6 @@ const SENSITIVE_FIELDS = Object.freeze([
 
     // --- Database Internal Cruft (Clean up logs noise) ---
     "__v",
-    "_id"
 ]);
 
 export { SENSITIVE_FIELDS };
