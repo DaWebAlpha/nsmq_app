@@ -51,7 +51,7 @@ const toNumber = (value, fallback) => {
 
     return Number.isFinite(validNumber) &&
         validNumber > 0 &&
-        validNumber < 65535 ?
+        validNumber <= 65535 ?
         validNumber :
         fallback;
 }
@@ -59,17 +59,18 @@ const toNumber = (value, fallback) => {
 const allowedNodeEnvs = ["development", "test", "production"];
 let resolvedNodeEnvs;
 
+let normalizedNodeEnv = String(NODE_ENV ?? "").trim().toLowerCase();
+
 if(
-    !NODE_ENV ||
-    NODE_ENV.trim() === "" ||
-    typeof NODE_ENV !== "string"
+    !normalizedNodeEnv 
 ){
     resolvedNodeEnvs = "development";
-}else if(!allowedNodeEnvs.includes(NODE_ENV.trim())){
+}else if(!allowedNodeEnvs.includes(normalizedNodeEnv)){
     throw new Error(`NODE_ENV must include ${allowedNodeEnvs.join(", ")}`)
 }else{
-    resolvedNodeEnvs = NODE_ENV.trim();
+    resolvedNodeEnvs = normalizedNodeEnv;
 }
+
 
 const config = Object.freeze({
     port: toNumber(PORT, 6000),
